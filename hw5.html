@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            display: block;
+        }
+
+        .profile-info {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>User Profile</h1>
+        <form id="userForm">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" required><br><br>
+
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" required><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" required><br><br>
+
+            <label for="role">Role:</label>
+            <input type="text" id="role" required><br><br>
+
+            <label for="mobile">Mobile Phone:</label>
+            <input type="tel" id="mobile" required><br><br>
+
+            <label for="height">Height:</label>
+            <input type="number" id="height" required><br><br>
+
+            <label for="city">Residential City:</label>
+            <select id="city" required>
+                <option value="Tel Aviv">Tel Aviv</option>
+                <option value="Jerusalem">Jerusalem</option>
+                <option value="Ramat Gan">Ramat Gan</option>
+                <option value="Kiriyat-Shmona">Kiriyat-Shmona</option>
+                <option value="Haifa">Haifa</option>
+                <option value="Bear-Sheva">Bear-Sheva</option>
+                <option value="Ashkelon">Ashkelon</option>
+
+            </select><br><br>
+
+            <label for="vegetarian">Vegetarian:</label>
+            <input type="checkbox" id="vegetarian"><br><br>
+
+            <label>Operating System:</label>
+            <input type="radio" id="windows" name="os" value="Windows">
+            <label for="windows">Windows</label>
+            <input type="radio" id="mac" name="os" value="MAC">
+            <label for="mac">MAC</label>
+            <input type="radio" id="linux" name="os" value="Linux">
+            <label for="linux">Linux</label><br><br>
+
+            <label for="profilePicture">Profile Picture:</label>
+            <input type="text" id="profilePicture" required><br><br>
+
+            <button type="button" id="submitButton">Create Profile</button>
+        </form>
+    </div>
+
+    <div id="profileDisplay" class="container" style="display: none;">
+        <img id="profileImage" class="profile-image" src="" alt="Profile Picture">
+        <div id="displayInfo" class="profile-info">
+            <h2>Name: <span id="displayName"></span></h2>
+            <p>Email: <span id="displayEmail"></span></p>
+            <p>Role: <span id="displayRole"></span></p>
+            <p>Mobile: <span id="displayMobile"></span></p>
+            <p>Height: <span id="displayHeight"></span> cm</p>
+            <p>Residential City: <span id="displayCity"></span></p>
+            <p>Vegetarian: <span id="displayVegetarian"></span></p>
+            <p>Operating System: <span id="displayOS"></span></p>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('userForm');
+        const submitButton = document.getElementById('submitButton');
+        const profileDisplay = document.getElementById('profileDisplay');
+        const profileImage = document.getElementById('profileImage');
+        const displayName = document.getElementById('displayName');
+        const displayEmail = document.getElementById('displayEmail');
+        const displayRole = document.getElementById('displayRole');
+        const displayMobile = document.getElementById('displayMobile');
+        const displayHeight = document.getElementById('displayHeight');
+        const displayCity = document.getElementById('displayCity');
+        const displayVegetarian = document.getElementById('displayVegetarian');
+        const displayOS = document.getElementById('displayOS');
+
+        submitButton.addEventListener('click', () => {
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const role = document.getElementById('role').value;
+            const mobile = document.getElementById('mobile').value;
+            const height = document.getElementById('height').value;
+            const city = document.getElementById('city').value;
+            const vegetarian = document.getElementById('vegetarian').checked;
+            const os = document.querySelector('input[name="os"]:checked').value;
+            const profilePicture = document.getElementById('profilePicture').value;
+
+            displayName.textContent = `${firstName} ${lastName}`;
+            displayEmail.textContent = email;
+            displayRole.textContent = role;
+            displayMobile.textContent = mobile;
+            displayHeight.textContent = height;
+            displayCity.textContent = city;
+            displayVegetarian.textContent = vegetarian ? 'Yes' : 'No';
+            displayOS.textContent = os;
+
+            profileImage.src = profilePicture;
+
+            form.style.display = 'none';
+            profileDisplay.style.display = 'block';
+        });
+    </script>
+</body>
+
+</html>
