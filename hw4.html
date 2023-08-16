@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        input {
+            padding: 5px;
+            margin: 5px;
+        }
+    </style>
+    <title>Number Sum Game</title>
+</head>
+
+<body>
+    <h1>Number Sum Game</h1>
+
+    <div>
+        <input type="number" id="input1" placeholder="Random Number 1" readonly>
+        <br><br>
+        <input type="number" id="input2" placeholder="Random Number 2" readonly>
+        <br><br>
+        <button id="generateBtn" onclick="generateNumbers()">Generate Numbers</button>
+        <br><br>
+    </div>
+
+    <div>
+        <input type="number" id="userInput" placeholder="Enter Sum">
+        <br><br>
+        <button id="checkBtn" onclick="checkSum()">Check Sum</button>
+    </div>
+
+    <script>
+        function generateRandomNumber() {
+            return Math.floor(Math.random() * 100) + 1;
+        }
+
+        function generateNumbers() {
+            var num1 = generateRandomNumber();
+            var num2 = generateRandomNumber();
+
+            document.getElementById('input1').value = num1;
+            document.getElementById('input2').value = num2;
+        }
+
+        function checkSum() {
+            var num1 = parseInt(document.getElementById('input1').value);
+            var num2 = parseInt(document.getElementById('input2').value);
+            var userSum = parseInt(document.getElementById('userInput').value);
+
+            if (userSum === num1 + num2) {
+                alert('Success! Your calculation is correct.');
+            } else {
+                alert('Error: Your calculation is incorrect.');
+            }
+        }
+    </script>
+</body>
+
+</html>
